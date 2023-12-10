@@ -488,8 +488,10 @@ hogcpu (void)
 int
 hogio ()
 {
-    while (1)
+    while (1) {
+        sleep(1); /* XXX */
         sync ();
+    }
 
     return 0;
 }
@@ -504,6 +506,8 @@ hogvm (long long bytes, long long stride, long long hang, int keep)
 
     while (1)
     {
+        sleep(1); /* XXX */
+
         if (do_malloc)
         {
             dbg (stdout, "allocating %lli bytes ...\n", bytes);
@@ -575,6 +579,8 @@ hoghdd (long long bytes)
     while (1)
     {
         char name[] = "./stress.XXXXXX";
+
+        sleep(1); /* XXX */
 
         if ((fd = mkstemp (name)) == -1)
         {
